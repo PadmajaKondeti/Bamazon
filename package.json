@@ -11,8 +11,17 @@
   "dependencies": {
     "cli-prompt": "^0.6.0",
     "cli-table": "^0.3.1",
+    "fs": "0.0.2",
     "inquirer": "^1.1.2",
     "mysql": "^2.11.1",
     "prompt": "^1.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PadmajaKondeti/Bamazon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PadmajaKondeti/Bamazon/issues"
+  },
+  "homepage": "https://github.com/PadmajaKondeti/Bamazon#readme"
 }
