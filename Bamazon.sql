@@ -1,6 +1,6 @@
 CREATE DATABASE bamazondb;
 USE  bamazondb;
-
+SELECT * FROM products;
 DROP TABLE products;
 
 CREATE TABLE products(
@@ -37,4 +37,6 @@ INSERT INTO  products(`productName`, `departmentName`, `price`, `stockQuantity`)
 INSERT INTO  products(`productName`, `departmentName`, `price`, `stockQuantity`) VALUES (
 'product2', 'department6', 351.50, 10);
 
-SELECT * FROM products;
+──────────┴────────────────────┴────────────────────┴──────────┴────────────────────┘
+UPDATE products SET stockQuantity =  stockQuantity - 1 WHERE itemID = 1;
+
