@@ -60,7 +60,3 @@ JOIN products pro ON pro.departmentName=dep.departmentName AND pro.itemID = 1
 SET dep.totalSales =  (dep.totalSales + 10*pro.price) ;
 
 
-UPDATE departments 
-SET departments.totalSales =  (departments.totalSales + 10*products.price)
-FROM departments INNER JOIN products ON products.itemID = tweets.itemID
-WHERE products.itemID = 1;

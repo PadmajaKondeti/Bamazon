@@ -52,14 +52,14 @@ var viewProductSales = function(){
 	connection.query(sqlQuery, function(err, res){
 		if ( res.length ) {
 			var table = new Table({
-				head: ['DepartmentID', 'DepartmentName', 'OverHeadCosts', 'ProductSales', 'TotalSales', 'TotalProfit'],
-				colWidths: [10, 20, 20, 10, 10, 10]
+				head: ['DepartmentID', 'DepartmentName', 'OverHeadCosts', 'ProductSales', 'TotalProfit'],
+				colWidths: [10, 15, 15, 15, 15]
 			});
 			for (var i = 0; i < res.length; i++){
 				var TotalProfit = res[i].totalSales - res[i].overHeadCosts;
 				var ProductSales = 0;
 				table.push(
-				[res[i].departmentID, res[i].departmentName, res[i].overHeadCosts, ProductSales, res[i].totalSales, TotalProfit]);
+				[res[i].departmentID, res[i].departmentName, res[i].overHeadCosts, res[i].totalSales, TotalProfit]);
 			};
 			console.log(table.toString());	
 		};	
@@ -68,7 +68,6 @@ var viewProductSales = function(){
 var addNewDepartment = function(departmentName, overHeadCosts, totalSales){
 	var sqlQuery = 'INSERT INTO departments (departmentName, overHeadCosts, totalSales) VALUES ("';
 		sqlQuery +=  departmentName +'", ' + overHeadCosts +',' + totalSales +');' ;
-		console.log(sqlQuery);
 	connection.query(sqlQuery, function(err, res){
 		if (err) throw err;
 		viewProductSales();
