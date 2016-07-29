@@ -41,12 +41,12 @@ var promptCustomer = function(){
 	{
 		type: 'input',
 		name:'choice',
-		message:'What would you like to purchase? [Quit with Q]'
+		message:'What would you like to purchase? [Quit with ctrl+C]'
 		
 	},
 	{	type: 'input',
 		name:'quantity',
-		message:'How many do you like to purchase? [Quit with Q]'	
+		message:'How many do you like to purchase? [Quit with ctrl+C]'	
 	}
 
 	]).then(function(val){
@@ -55,7 +55,7 @@ var promptCustomer = function(){
 			if (isNaN(val.choice)) {
 				console.log(val.choice);
 				// Pass the return value in the done callback
-				console.log('You need to provide a number');
+				console.log('You need to provide a valid productID');
 			};
 			if (isNaN(val.quantity)) {			
 				console.log('You need to provide a number');
