@@ -11,7 +11,7 @@ CREATE TABLE products(
   `stockQuantity` INT NULL,
   PRIMARY KEY (`itemID`)
 );
-
+select * from products;
 INSERT INTO  products(`productName`, `departmentName`, `price`, `stockQuantity`) VALUES (
 'product1', 'department1', 20.50, 10);
 INSERT INTO  products(`productName`, `departmentName`, `price`, `stockQuantity`) VALUES (
@@ -37,6 +37,30 @@ INSERT INTO  products(`productName`, `departmentName`, `price`, `stockQuantity`)
 INSERT INTO  products(`productName`, `departmentName`, `price`, `stockQuantity`) VALUES (
 'product2', 'department6', 351.50, 10);
 
-──────────┴────────────────────┴────────────────────┴──────────┴────────────────────┘
-UPDATE products SET stockQuantity =  stockQuantity - 1 WHERE itemID = 1;
+CREATE TABLE departments(
+ `departmentID` INT AUTO_INCREMENT NOT NULL,
+  `departmentName` VARCHAR(100) NULL,
+  `overHeadCosts` DOUBLE(10,2) NULL,
+  `totalSales` DOUBLE(10,2) NULL,
+  PRIMARY KEY (`departmentID`)
+);
+select * from departments;
+INSERT INTO  departments(`departmentName`, `overHeadCosts`, `totalSales`) VALUES (
+'department1', 30000, 100000);
+INSERT INTO  departments(`departmentName`, `overHeadCosts`, `totalSales`) VALUES (
+'department2', 20000, 10000);
+INSERT INTO  departments(`departmentName`, `overHeadCosts`, `totalSales`) VALUES (
+'department3', 10000, 122000);
+INSERT INTO  departments(`departmentName`, `overHeadCosts`, `totalSales`) VALUES (
+'department4', 1000, 12000);
 
+
+UPDATE departments dep
+JOIN products pro ON pro.departmentName=dep.departmentName AND pro.itemID = 1
+SET dep.totalSales =  (dep.totalSales + 10*pro.price) ;
+
+
+UPDATE departments 
+SET departments.totalSales =  (departments.totalSales + 10*products.price)
+FROM departments INNER JOIN products ON products.itemID = tweets.itemID
+WHERE products.itemID = 1;

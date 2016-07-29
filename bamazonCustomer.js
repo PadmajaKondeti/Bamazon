@@ -74,9 +74,11 @@ var getProdctDetails = function(productID, quantity){
 		if (err) throw err;
 		if ( res.length ) {
 			if (res[0].stockQuantity  >= quantity){
-				var sqlQuery = 'UPDATE products SET stockQuantity = stockQuantity - ' + quantity + ' WHERE ItemID = ' + productID ;
+				// updated quantity in the products
+				var sqlQuery = 'UPDATE products SET stockQuantity = stockQuantity - ' + quantity + ' WHERE ItemID = ' + productID + ';';
 				connection.query(sqlQuery, function(err, res){
 					if (err) throw err;
+					// display total cost to customer
 					var sqlQuery = 'SELECT * FROM Products WHERE ItemID= '+ productID ;
 					connection.query(sqlQuery, function(err, res){
 						if (err) throw err;
@@ -90,13 +92,20 @@ var getProdctDetails = function(productID, quantity){
 						};
 						console.log('\nHERE ARE THE PURCHASE DETAILS');
 						console.log(table.toString());	
+						//updating department table total sales
+						console.log(sqlQuery);
+						var sqlQuery = 'UPDATE departments dep JOIN products pro ON pro.departmentName=dep.departmentName AND pro.itemID = '
+							+ productID +' SET dep.totalSales =  (dep.totalSales + ' +  quantity + ' * pro.price);'; 
+						connection.query(sqlQuery, function(err, res){
+							if (err) throw err;
+						});
 						connection.end();
 					});	
 				})
-		} else {
-			console.log("Sorry Insufficient quantity");
-			connection.end();
-		};
-	}
-});
+			} else {
+				console.log("Sorry Insufficient quantity");
+				connection.end();
+			};
+		}
+	});
 };
