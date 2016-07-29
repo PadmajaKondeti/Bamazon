@@ -23,7 +23,7 @@ inquirer.prompt([
 // In this case, we store all of the answers into a "user" object that inquirer makes for us. 
 ]).then(function (user) {
 	// If we log that user as a JSON, we can see how it looks.
-	console.log(JSON.stringify(user, null, 2));
+	//console.log(JSON.stringify(user, null, 2));
 
 	// If the user confirms, we displays the user's name and pokemon from the answers. 
 	connection.connect(function(err){
