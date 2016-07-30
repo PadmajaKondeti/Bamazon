@@ -21,12 +21,12 @@ var getAllProducts = function(){
 	connection.query(sqlQuery, function(err, res){
 		if ( res.length ) {
 			var table = new Table({
-				head: ['ItemID', 'ProductName', 'Price'],
-				colWidths: [10, 20, 20]
+				head: ['ItemID', 'ProductName', 'Price', 'AvailableQty'],
+				colWidths: [10, 15, 15, 15]
 			});
 			for (var i = 0; i < res.length; i++){
 				table.push(
-				[res[i].itemID, res[i].productName, res[i].price]);
+				[res[i].itemID, res[i].productName, res[i].price, res[i].stockQuantity]);
 			};
 			console.log(table.toString());	
 			promptCustomer();
@@ -93,7 +93,6 @@ var getProdctDetails = function(productID, quantity){
 						console.log('\nHERE ARE THE PURCHASE DETAILS');
 						console.log(table.toString());	
 						//updating department table total sales
-						console.log(sqlQuery);
 						var sqlQuery = 'UPDATE departments dep JOIN products pro ON pro.departmentName=dep.departmentName AND pro.itemID = '
 							+ productID +' SET dep.totalSales =  (dep.totalSales + ' +  quantity + ' * pro.price);'; 
 						connection.query(sqlQuery, function(err, res){
